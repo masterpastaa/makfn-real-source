@@ -417,14 +417,14 @@ BOOL DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 	TestLog();
 	LoadObjects();
 	TestLog();
-	auto B = utils::PatternScan(xorstr("40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 33 D2 48 8D 05 ? ? ? ? 48 89 03 48 8B C3")) + 16;
+	auto B = utils::PatternScan(xorstr("YOU DONT NEED THIS")) + 15485;
 	B = RVA(B, 7);
 
-	VirtualTableFunctionSwap((void*)B, ProcessEventHooked, (void**)&ProcessEventOriginal, 0x220);
+	VirtualTableFunctionSwap((void*)B, ProcessEventHooked, (void**)&ProcessEventOriginal, 0x44);
 	TestLog();
-	B = B - 0x118;
+	B = B - 0x9971;
 	TestLog();
-	VirtualTableFunctionSwap((void*)B, ProcessEventHooked, (void**)&ProcessEventOriginal, 0x220);
+	VirtualTableFunctionSwap((void*)B, ProcessEventHooked, (void**)&ProcessEventOriginal, 0x44);
 	TestLog();
 	auto GWorld = *(uintptr_t*)(Addresses::UWorld);
 	auto World = (UWorld*)GWorld;
